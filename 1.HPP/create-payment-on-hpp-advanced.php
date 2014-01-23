@@ -185,8 +185,8 @@
 	$hmacKey
   ))); 
   
-  // Compute the billingSig
-  $billingSig = base64_encode(pack("H*",hash_hmac(
+  // Compute the billingAddressSig
+  $billingAddressSig = base64_encode(pack("H*",hash_hmac(
   	'sha1',
 	$shopperInfo["billing"]["billingAddress.street"] .
 	$shopperInfo["billing"]["billingAddress.houseNumberOrName"] .
@@ -197,7 +197,7 @@
 	$hmacKey
   )));
   
-  // Compute the deliverySig
+  // Compute the deliveryAddressSig
   $deliveryAddressSig = base64_encode(pack("H*",hash_hmac(
   	'sha1',
 	$shopperInfo["delivery"]["deliveryAddress.street"] .
@@ -276,7 +276,7 @@
 	<input type="hidden" name="shopperType" value="<?=$shopperInfo["shopper"]["shopperType"] ?>"/>
 		
 	<!-- Signatures -->
-	<input type="hidden" name="billingSig" value="<?=$billingSig ?>"/>
+	<input type="hidden" name="billingAddressSig" value="<?=$billingAddressSig ?>"/>
 	<input type="hidden" name="deliveryAddressSig" value="<?=$deliveryAddressSig ?>"/>
 	<input type="hidden" name="shopperSig" value="<?=$shopperSig ?>"/>
 	<input type="hidden" name="merchantSig" value="<?=$merchantSig ?>"/>
